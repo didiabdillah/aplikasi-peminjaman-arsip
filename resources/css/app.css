@@ -1,3 +1,126 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Custom styles */
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #64748b;
+    --success-color: #059669;
+    --danger-color: #dc2626;
+    --warning-color: #d97706;
+    --info-color: #0891b2;
+    --light-color: #f8fafc;
+    --dark-color: #1e293b;
+}
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, sans-serif;
+    background-color: #f8fafc;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 0.5rem;
+}
+
+.card-header {
+    background-color: white;
+    border-bottom: 1px solid #e2e8f0;
+    font-weight: 600;
+}
+
+.btn {
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.table {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.table thead th {
+    background-color: #f8fafc;
+    border-bottom: 2px solid #e2e8f0;
+    font-weight: 600;
+    color: #374151;
+}
+
+.badge {
+    font-weight: 500;
+    padding: 0.375rem 0.75rem;
+}
+
+.form-control, .form-select {
+    border-radius: 0.375rem;
+    border: 1px solid #d1d5db;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+}
+
+.sidebar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.75rem 1rem;
+    margin: 0.25rem 0;
+    border-radius: 0.375rem;
+    transition: all 0.15s ease-in-out;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.main-content {
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1rem;
+    }
+}
+
+/* Loading spinner */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Status badges */
+.status-available { background-color: var(--success-color); }
+.status-borrowed { background-color: var(--warning-color); }
+.status-maintenance { background-color: var(--danger-color); }
+.status-returned { background-color: var(--info-color); }
+.status-overdue { background-color: var(--danger-color); }
