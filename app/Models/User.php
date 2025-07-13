@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'phone',
+        'address',
+        'status',
     ];
 
     /**
@@ -41,4 +45,40 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+    * Check if user is admin
+    */
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+    /**
+    * Check if user is peminjam
+    */
+    public function isPeminjam()
+    {
+        return $this->role === 'peminjam';
+    }
+    /**
+    * Get archives created by this user
+    */
+    public function createdArchives()
+    {
+        return $this->hasMany(Archive::class, 'created_by');
+    }
+    /**
+    * Get loans made by this user
+    */
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
+    /**
+    * Get loans approved by this user (for admin)
+    */
+    public function approvedLoans()
+    {
+        return $this->hasMany(Loan::class, 'approved_by');
+    }
 }
